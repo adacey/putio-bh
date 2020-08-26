@@ -1,0 +1,11 @@
+{
+	"OAUTH_TOKEN": "",
+	"INCOMPLETE_DIR": "/data/torrent/incomplete",
+	"COMPLETE_DIR": "/data/torrent",
+	"BLACKHOLE_DIR": "/data/torrent/watch",
+	"dirs" : {
+		"tv": "",
+		"movies": "",
+		"music": ""
+	}
+}
