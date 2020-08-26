@@ -39,7 +39,7 @@ for dir, id in config['dirs'].items():
 	files = client.File.list(id)
 	for file in files:
 		logging.info('Will download file %s.', file.name)
-		file.download(dest=config['INCOMPLETE_DIR'])
+		file.download(dest=config['INCOMPLETE_DIR'],delete_after_download=True)
 		shutil.move(os.path.join(config['INCOMPLETE_DIR'], file.name), dest_dir)
 
 client.close()
