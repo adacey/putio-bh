@@ -17,18 +17,17 @@ RUN	mkdir -p $CONFIG_DIR && \
 	mkdir -p $COMPLETE_DIR && \
 	mkdir -p $INCOMPLETE_DIR
 
-RUN	useradd -d "$HOME" putio
-WORKDIR	/usr/src/myapp 
-COPY	putio-bh.py .
-COPY	config.json $CONFIG_DIR
 RUN	pip install --no-cache-dir putio.py
-RUN	chmod 755 putio-bh.py && \
+RUN	useradd -d "$HOME" putio
+WORKDIR	$CONFIG_DIR
+COPY	putio-bh.py /usr/src/myapp/ 
+COPY	config.json $CONFIG_DIR
+RUN	chmod 755 /usr/src/myapp/putio-bh.py && \
 	chown -R putio $CONFIG_DIR && \
 	chown -R putio $BASE_DIR
 
 USER	putio
 ENV	PATH	/usr/src/myapp:$PATH
-WORKDIR	$CONFIG_DIR
 VOLUME	["/config","$BASE_DIR"]
 
 ENTRYPOINT ["putio-bh.py"]
