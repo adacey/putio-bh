@@ -9,7 +9,7 @@ ENV	BLACKHOLE_DIR	$BASE_DIR/watch
 ENV	COMPLETE_DIR	$BASE_DIR
 ENV	INCOMPLETE_DIR	$BASE_DIR/incomplete
 ENV 	UID	99
-ENV	GID	98
+ENV	GID	100
 
 RUN	mkdir -p $CONFIG_DIR && \
 	mkdir -p $BASE_DIR && \
@@ -18,7 +18,10 @@ RUN	mkdir -p $CONFIG_DIR && \
 	mkdir -p $INCOMPLETE_DIR
 
 RUN	pip install --no-cache-dir putio.py
-RUN	useradd -d "$HOME" putio
+RUN	useradd -d "$HOME" \
+	-g $GID \
+	-u $UID \
+	putio
 WORKDIR	$CONFIG_DIR
 COPY	putio-bh.py /usr/src/myapp/ 
 COPY	config.json $CONFIG_DIR
