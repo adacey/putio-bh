@@ -13,4 +13,8 @@ The idea is to use your watch directory as a blackhole with each media type (tv,
 
 ## To Do
 
-I likely should add some more error handling into the script but as a first release this has been pared down as simply as possible.
+* I likely should add some more error handling into the script but as a first release this has been pared down as simply as possible.
+  * Confirmed that disconnects mid-transfer are not a concern though.
+* Improved managing of the incomplete directory if the transfer is iunterrupted
+  * If you're downloading big directories (e.g. a whole season or series in 1 directory) then the next connection may not pick up on that directory, especially if other transfers have completed on putio first. This means you can end up with a lot of files in your incomplete directory until everything catches up.
+* Add support for magnet files.
