@@ -19,10 +19,10 @@ if not os.path.exists(config['INCOMPLETE_DIR']):
 	os.mkdir(config['INCOMPLETE_DIR'])
 
 for dir, id in config['dirs'].items():
+	dest_dir=os.path.join(config['COMPLETE_DIR'], dir)
 	torrent_dir= os.path.join(blackhole, dir)
 	logging.info('Checking dir %s for torrents', torrent_dir)
 	torrents=glob.glob(os.path.join(torrent_dir, '*.torrent'))
-	dest_dir=os.path.join(config['COMPLETE_DIR'], dir)
 	if not os.path.exists(dest_dir):
         	os.mkdir(dest_dir)
 	for torrent in torrents:
@@ -34,6 +34,18 @@ for dir, id in config['dirs'].items():
 			logging.info('Added torrent %s', torrent)
 		except Exception as e:
 			logging.warning('Failed to add torrent %s: %s', torrent, e)
+			continue
+	logging.info('Checking dir %s for magnets', torrent_dir)
+	magnets=glob.glob(os.path.join(torrent_dir, '*.magnet'))
+	for magnet in magnets:
+		logging.info('Found magnet %s in %s', magnet, torrent_dir)
+		try:
+			logging.info('Adding magnet %s', magnet)
+			client.Transfer.add_torrent(path=magnet, parent_id=id)
+			os.unlink(torrent)
+			logging.info('Added torrent %s', torrent)
+		except Exception as e:
+			logging.warning('Failed to add magnet %s: %s', torrent, e)
 			continue
 	logging.info('Checking dir %s for files to download', dir)
 	files = client.File.list(id)
