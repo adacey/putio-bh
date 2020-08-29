@@ -43,9 +43,9 @@ for dir, id in config['dirs'].items():
 			logging.info('Adding magnet %s', magnet)
 			client.Transfer.add_torrent(path=magnet, parent_id=id)
 			os.unlink(magnet)
-			logging.info('Added torrent %s', torrent)
+			logging.info('Added torrent %s', magnet)
 		except Exception as e:
-			logging.warning('Failed to add magnet %s: %s', torrent, e)
+			logging.warning('Failed to add magnet %s: %s', magnet, e)
 			continue
 	logging.info('Checking dir %s for files to download', dir)
 	files = client.File.list(id)
