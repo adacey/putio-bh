@@ -17,6 +17,5 @@ The idea is to use your watch directory as a blackhole with each media type (tv,
   * Confirmed that disconnects mid-transfer are not a concern though.
 * Improved managing of the incomplete directory if the transfer is iunterrupted
   * If you're downloading big directories (e.g. a whole season or series in 1 directory) then the next connection may not pick up on that directory, especially if other transfers have completed on putio first. This means you can end up with a lot of files in your incomplete directory until everything catches up.
-* Add support for magnet files.
 * Generate starter config.json if not found with default values populated.
 * Look into better handling of the putio directory ids and possible options to avoid having to hard-code the ids in the config.
