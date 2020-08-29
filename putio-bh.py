@@ -42,7 +42,7 @@ for dir, id in config['dirs'].items():
 		try:
 			logging.info('Adding magnet %s', magnet)
 			client.Transfer.add_torrent(path=magnet, parent_id=id)
-			os.unlink(torrent)
+			os.unlink(magnet)
 			logging.info('Added torrent %s', torrent)
 		except Exception as e:
 			logging.warning('Failed to add magnet %s: %s', torrent, e)
